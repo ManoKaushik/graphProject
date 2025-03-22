@@ -1,15 +1,17 @@
 package com.springboot.graphbot.service;
-
 import org.json.JSONObject;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class GeminiService {
     
     private static final String GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent";
-    private static final String API_KEY = "AIzaSyDyQKaqHOwwXmpek5nVhDp4dg9uCrLUWYk";
+    
+    @Value("${gemini.api.key}")
+    private static String API_KEY;
 
     public String generateSQLQuery(String userInput) {
         RestTemplate restTemplate = new RestTemplate();
